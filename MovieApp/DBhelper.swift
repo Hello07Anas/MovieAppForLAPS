@@ -10,7 +10,7 @@ import SQLite3
 import UIKit
 
 class DBHelper {
-    static let shared = DBHelper() // SingleTone
+    static let shared = DBHelper() // SingleTone // test
     
     private var db: OpaquePointer?
     private let dbPath: String
