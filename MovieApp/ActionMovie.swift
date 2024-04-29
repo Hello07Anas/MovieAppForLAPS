@@ -1,0 +1,26 @@
+//
+//  ActionMovie.swift
+//  MovieApp
+//
+//  Created by Anas Salah on 22/04/2024.
+//
+
+import Foundation
+import UIKit
+
+struct ActionMovie {
+    let title: String
+    let image: UIImage?
+    let rating: Int
+    let releaseYear: Int
+    let genre: [String]
+}
+
+var movies: [ActionMovie] = [
+    ActionMovie(title: "The Matrix", image: UIImage(named: "The Matrix"), rating: 8, releaseYear: 1999, genre: ["Action", "Sci-Fi"]),
+    ActionMovie(title: "Die Hard", image: UIImage(named: "Mad Max"), rating: 8, releaseYear: 1988, genre: ["Action", "Thriller"]),
+    ActionMovie(title: "Mad Max: Fury Road", image: UIImage(named: "Mad Max"), rating: 8, releaseYear: 2015, genre: ["Action", "Adventure"]),
+    ActionMovie(title: "John Wick", image: UIImage(named: "John Wick"), rating: 7, releaseYear: 2014, genre: ["Action", "Crime"]),
+    ActionMovie(title: "The Dark Knight", image: UIImage(named: "The Dark Knight"), rating: 9, releaseYear: 2008, genre: ["Action", "Crime", "Drama"])
+]
+
