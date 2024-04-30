@@ -32,6 +32,5 @@ class ViewController: UIViewController, AddMovieProtocol {
     func addMovie(movie: ActionMovie) {
         movies.append(selectedMovie!)
     }
-    
-
 }
+

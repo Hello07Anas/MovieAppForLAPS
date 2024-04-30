@@ -10,7 +10,7 @@ import SQLite3
 import UIKit
 
 class DBHelper {
-    static let shared = DBHelper() // SingleTone // test
+    static let shared = DBHelper() // MARK: SingleTone // test
     
     private var db: OpaquePointer?
     private let dbPath: String
@@ -18,7 +18,7 @@ class DBHelper {
     private init() {
         guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Unable to access document directory.")
-        }
+        } // accessing fileManager
         self.dbPath = documentDirectoryPath.appendingPathComponent("movies.sqlite").path
         
         if sqlite3_open(self.dbPath, &db) == SQLITE_OK {
@@ -31,7 +31,7 @@ class DBHelper {
     
     private func createTable() { // Binary Large Object == BLOB
         let createTableString = """
-        CREATE TABLE IF NOT EXISTS ActionMovie (
+        CREATE TABLE IF NOT EXISTS Movies (
             title TEXT PRIMARY KEY,
             image BLOB,
             rating INTEGER,
@@ -42,9 +42,9 @@ class DBHelper {
         var createTableStatement: OpaquePointer?
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
             if sqlite3_step(createTableStatement) == SQLITE_DONE {
-                print("ActionMovie table created.")
+                print("Movies table created.")
             } else {
-                print("ActionMovie table is not created.")
+                print("Movies table is not created.")
             }
         } else {
             print("CREATE TABLE statement is not prepared.")
@@ -53,11 +53,11 @@ class DBHelper {
     }
     
     func insert(movie: ActionMovie) {
-        let insertStatementString = "INSERT INTO ActionMovie (title, image, rating, releaseYear, genre) VALUES (?, ?, ?, ?, ?);"
+        let insertStatementString = "INSERT INTO Movies (title, image, rating, releaseYear, genre) VALUES (?, ?, ?, ?, ?);"
         var insertStatement: OpaquePointer?
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_text(insertStatement, 1, (movie.title as NSString).utf8String, -1, nil)
-            if let imageData = movie.image?.pngData() {
+            if let imageData = movie.image?.pngData() { // imageData type o+f "Data" now
                 sqlite3_bind_blob(insertStatement, 2, (imageData as NSData).bytes, Int32(imageData.count), nil)
             } else {
                 sqlite3_bind_null(insertStatement, 2)
@@ -77,7 +77,7 @@ class DBHelper {
     }
     
     func delete(title: String) {
-        let deleteStatementString = "DELETE FROM ActionMovie WHERE title = ?;"
+        let deleteStatementString = "DELETE FROM Movies WHERE title = ?;"
         var deleteStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
@@ -97,7 +97,7 @@ class DBHelper {
     
     func retrieveAllMovies() -> [ActionMovie] {
         var movies: [ActionMovie] = []
-        let queryStatementString = "SELECT title, image, rating, releaseYear, genre FROM ActionMovie;"
+        let queryStatementString = "SELECT title, image, rating, releaseYear, genre FROM Movies;"
         var queryStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {

@@ -214,38 +214,36 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewR-xt-i5x">
-                                <rect key="frame" x="132" y="388.66666666666669" width="129" height="75"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Done">
-                                    <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="50"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="donetBtn:" destination="L8L-Yo-4Bj" eventType="touchUpInside" id="Yji-R1-ggs"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB9-HB-0Mu">
-                                <rect key="frame" x="119" y="492" width="154" height="75"/>
+                                <rect key="frame" x="16" y="374" width="152" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Image">
-                                    <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="50"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Selecte an Image">
+                                    <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="imagePickerBtn:" destination="L8L-Yo-4Bj" eventType="touchUpInside" id="gYl-SA-fxr"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMf-Iq-Fvh">
-                                <rect key="frame" x="16" y="575" width="361" height="243"/>
+                                <rect key="frame" x="16" y="418" width="361" height="243"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewR-xt-i5x">
+                                <rect key="frame" x="125" y="705" width="143" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Done!">
+                                    <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="50"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="donetBtn:" destination="L8L-Yo-4Bj" eventType="touchUpInside" id="Yji-R1-ggs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5TX-fT-0hj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ewR-xt-i5x" firstAttribute="centerX" secondItem="GAi-b6-BBw" secondAttribute="centerX" id="7q3-W0-Tgj"/>
-                            <constraint firstItem="ewR-xt-i5x" firstAttribute="centerY" secondItem="GAi-b6-BBw" secondAttribute="centerY" id="Spe-nf-AGJ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H8I-Wk-07Z"/>
                     <connections>
