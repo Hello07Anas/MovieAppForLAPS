@@ -33,14 +33,15 @@ class AddNewMovie: UIViewController, UIImagePickerControllerDelegate & UINavigat
               !genreStr.isEmpty,
               let ratingStr = ratingTF.text,
               let rating = Int(ratingStr),
-              let image = imgTest.image else {
+              let image = imgTest.image,
+              let imageData = image.jpegData(compressionQuality: 1.0) else { // Convert UIImage to Data
             showAlert(message: "Please fill all fields.")
             return
         }
         
         let genre = genreStr.split(separator: ",").map { String($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
         
-        let newMovie = ActionMovie(title: title, image: image, rating: rating, releaseYear: releaseYear, genre: genre)
+        let newMovie = ActionMovie(title: title, imageData: imageData, rating: rating, releaseYear: releaseYear, genre: genre)
         
         dbHelper.insert(movie: newMovie)
         
@@ -83,6 +84,7 @@ class AddNewMovie: UIViewController, UIImagePickerControllerDelegate & UINavigat
         present(alertController, animated: true, completion: nil)
     }
 }
+
 /*   >>>> was in btnAdd before SQL
  //        let newMovie = ActionMovie(title: nameOfMovieTF.text ?? " ",
  //                                   image: UIImage(named: "Mad Max"),

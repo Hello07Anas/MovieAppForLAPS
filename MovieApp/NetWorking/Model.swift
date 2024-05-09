@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - WelcomeElement
-struct NewsPojo: Codable {
+struct MoviesPojo: Codable {
     let title: String
     let year: Int
     let genre: [String]

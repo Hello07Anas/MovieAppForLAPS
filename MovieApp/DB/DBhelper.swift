@@ -57,7 +57,7 @@ class DBHelper {
         var insertStatement: OpaquePointer?
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_text(insertStatement, 1, (movie.title as NSString).utf8String, -1, nil)
-            if let imageData = movie.image?.pngData() { // imageData type o+f "Data" now
+            if let imageData = movie.imageData { // imageData type o+f "Data" now
                 sqlite3_bind_blob(insertStatement, 2, (imageData as NSData).bytes, Int32(imageData.count), nil)
             } else {
                 sqlite3_bind_null(insertStatement, 2)
@@ -105,19 +105,18 @@ class DBHelper {
                 let title = String(cString: sqlite3_column_text(queryStatement, 0))
                 let imageDataPtr = sqlite3_column_blob(queryStatement, 1)
                 let imageDataSize = sqlite3_column_bytes(queryStatement, 1)
-                let image: UIImage?
+                let imageData: Data?
                 if let imageDataPtr = imageDataPtr {
-                    let imageData = Data(bytes: imageDataPtr, count: Int(imageDataSize))
-                    image = UIImage(data: imageData)
+                    imageData = Data(bytes: imageDataPtr, count: Int(imageDataSize))
                 } else {
-                    image = nil
+                    imageData = nil
                 }
                 let rating = Int(sqlite3_column_int(queryStatement, 2))
                 let releaseYear = Int(sqlite3_column_int(queryStatement, 3))
                 let genreString = String(cString: sqlite3_column_text(queryStatement, 4))
                 let genre = genreString.components(separatedBy: ",")
                 
-                let movie = ActionMovie(title: title, image: image, rating: rating, releaseYear: releaseYear, genre: genre)
+                let movie = ActionMovie(title: title, imageData: imageData, rating: rating, releaseYear: releaseYear, genre: genre)
                 movies.append(movie)
             }
         } else {
@@ -128,6 +127,7 @@ class DBHelper {
         
         return movies
     }
+
     
     deinit {
         if sqlite3_close(db) == SQLITE_OK {
